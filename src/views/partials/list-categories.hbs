@@ -1,0 +1,8 @@
+{{#each categories}}
+    <div class="box box-link-hover-shadow">
+        <p class="title">{{_id}}</p>
+        {{#each pins}}
+            {{> list-category-pins }}
+        {{/each}}
+    </div>
+{{/each}}

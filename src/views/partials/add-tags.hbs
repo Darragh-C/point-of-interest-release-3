@@ -1,0 +1,38 @@
+<section class="section">
+  <form class="box" action="/pin/{{this._id}}/addtags" method="POST">
+    <h1 class="title">Add or edit a pin's tags</h1>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+
+        <div class="field">
+          <label class="label">Description</label> <input class="input" type="text" placeholder="Enter pin description" name="description">
+        </div>
+
+        <div class="field">
+          <label class="label">County</label> <input class="input" type="text" placeholder="Enter county" name="county">
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="field is-horizontal">
+      <div class="field-body">
+
+        <div class="field">
+          <label class="label">Lattitude</label> <input class="input" type="text" placeholder="Enter Lattitude" name="lattitude">
+        </div>
+
+        <div class="field">
+          <label class="label">Longitude</label> <input class="input" type="text" placeholder="Enter Longitude" name="longitude">
+        </div>
+       
+        <div>
+          <button class="button is-link">Add Tag</button>
+        </div>
+
+      </div>
+    </div>
+    
+  </form>
+</section>
