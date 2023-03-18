@@ -1,5 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { PinSpec, PinArray, IdSpec, PinSpecPlus } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const pinApi = {
     create: {
@@ -18,6 +20,8 @@ export const pinApi = {
       tags: ["api"],
       description: "Create pin",
       notes: "Creates a pin with the pinApi",
+      validate: { payload: PinSpec, failAction: validationError },
+      response: { schema: PinSpecPlus, failAction: validationError },
     },
   
     find: {
@@ -33,6 +37,7 @@ export const pinApi = {
       tags: ["api"],
       description: "Get pins",
       notes: "Gets alls pins with the pinApi",
+      response: { schema: PinArray, failAction: validationError }
     },
 
     findOne: {
@@ -51,6 +56,8 @@ export const pinApi = {
       tags: ["api"],
       description: "Get user",
       notes: "Gets a pin with the pinApi when you pass its id",
+      response: { schema: PinSpecPlus, failAction: validationError },
+      validate: { params: { id: IdSpec }, failAction: validationError },
     },
     
     deleteAll: {
