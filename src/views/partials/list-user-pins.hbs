@@ -1,17 +1,42 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Place</th>
-      <th>User id</th>
+      <th>
+        Place
+        <div style="float: right;">
+          <a href="/admin/sortpins/name" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>
+      <th>
+        Category
+        <div style="float: right;">
+          <a href="/admin/sortpins/category" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>  
+      <th>
+        User id
+        <div style="float: right;">
+          <a href="/admin/sortpins/userid" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    {{#each pins}}
+    {{#each this.pins}}
       <tr>
         <td>
           {{name}}
+        </td>
+        <td>
+          {{category}}
         </td>
         <td>
           {{userid}}

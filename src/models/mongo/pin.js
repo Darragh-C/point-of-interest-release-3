@@ -5,10 +5,10 @@ const pinSchema = new Schema({
   userid: String,
   name: String,
   description: String,
-  county: String,
+  //county: String,
   lattitude: String,
   longitude: String,
-  category: String,
+  //category: String,
 });
 
 export const Pin = Mongoose.model("Pin", pinSchema);

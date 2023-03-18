@@ -1,14 +1,35 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
+      <th>
+        First name
+        <div style="float: right;">
+          <a href="/admin/sortusers/firstName" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>
+      <th>
+        Last name
+        <div style="float: right;">
+          <a href="/admin/sortusers/lastName" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>
+      <th>
+        Email
+        <div style="float: right;">
+          <a href="/admin/sortusers/email" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    {{#each users}}
+    {{#each this.users}}
       <tr>
         <td>
           {{firstName}}

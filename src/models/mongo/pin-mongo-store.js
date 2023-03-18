@@ -6,6 +6,11 @@ export const pinMongoStore = {
       const pins = await Pin.find().lean();
       return pins;
     },
+
+    async getAllPinsSort(key) {
+      const pins = await Pin.find().sort( { [key] : 1 } ).lean();
+      return pins;
+    },
   
     async getPinById(id) {
       if (id) {
@@ -40,8 +45,12 @@ export const pinMongoStore = {
       return pins;
     },
 
-    async groupPinsByCategory() {
+    async groupPinsByCategory(userId) {
       let pins = Pin.aggregate([
+        { $match: {
+            userid: userId
+          }   
+        },
         { $group: { 
           _id: "$category", pins: { 
             $push: { 
