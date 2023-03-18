@@ -6,7 +6,7 @@ export const johnDoe = {
     lastName: "Doe",
     email: "john@doe.com",
     password: "password",
-    isAdmin: true,
+    //isAdmin: true,
   };
 
 export const janeDoe = {
@@ -22,7 +22,7 @@ export const multiTestUsers = [
     lastName: "Simpson",
     email: "homer@simpson.com",
     password: "secret",
-    isAdmin: true,
+    //isAdmin: true,
 },
 {
     firstName: "Marge",
@@ -40,7 +40,7 @@ export const multiTestUsers = [
 
 export const testPin = {
     name: "Kinsale",
-    category: "public parking",
+    category: "Public parking",
     description: "Cork seaside town",
     lattitude: "44.45",
     longitude: "55.45",
@@ -50,7 +50,7 @@ export const testPin = {
 export const multiTestPins = [
     {
         name: "Kinsale",
-        category: "aires",
+        category: "Aires",
         description: "Cork seaside town",
         lattitude: "44.45",
         longitude: "55.45",
@@ -58,7 +58,7 @@ export const multiTestPins = [
     },
     {
         name: "Cobh",
-        category: "public parking",
+        category: "Public parking",
         description: "Cork seaside town",
         lattitude: "44.45",
         longitude: "55.45",
@@ -66,7 +66,7 @@ export const multiTestPins = [
     },
     {
         name: "Castletownbere",
-        category: "aires",
+        category: "Aires",
         description: "Cork seaside town",
         lattitude: "44.45",
         longitude: "55.45",
@@ -81,7 +81,7 @@ export const mongoGroupResponse = [
             {
                 userid : "12345",
                 name : "Kinsale",
-                category : "aires",
+                category : "Aires",
                 description : "Cork seaside town",
                 lattitude : "lattitude",
                 longitute : "55.45",
@@ -89,7 +89,7 @@ export const mongoGroupResponse = [
             {
                 userid : "67890",
                 name : "Castletownbere",
-                category : "aires",
+                category : "Aires",
                 description : "Cork seaside town",
                 lattitude : "lattitude",
                 longitute : "55.45",
@@ -102,7 +102,7 @@ export const mongoGroupResponse = [
             {
                 userid : "12345",
                 name : "Cobh",
-                category : "public parking",
+                category : "Public parking",
                 description : "Cork seaside town",
                 lattitude : "lattitude",
                 longitute : "55.45",

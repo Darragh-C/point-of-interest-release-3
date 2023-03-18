@@ -16,6 +16,7 @@ export const UserSpec = Joi.object()
     lastName: Joi.string().example("Doe").required(),
     email: Joi.string().email().example("john.doe@mail.com").required(),
     password: Joi.string().example("secret").required(),
+    isAdmin: Joi.boolean().allow("").example("True").optional(),
     _id: IdSpec,
     __v: Joi.number()
   })
@@ -39,6 +40,7 @@ export const PinSpec = Joi.object()
 
   export const TagSpec = Joi.object()
   .keys({
+    name: Joi.string().allow("").example("Kinsale").optional(),
     description: Joi.string().allow("").example("A seaside town west of Cork").optional(),
     lattitude: Joi.string().allow("").example("51.71").optional(),
     longitude: Joi.string().allow("").example("8.5").optional(),
