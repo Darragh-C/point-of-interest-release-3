@@ -97,7 +97,7 @@ export const userMongoStore = {
       });
     }  
   },  
-
+/*
   async isAdmin(user) {
     const dbUser = await User.findOne({ _id: user._id }).lean();
     if (dbUser?.isAdmin) {
@@ -107,5 +107,6 @@ export const userMongoStore = {
       return false;
     }  
   },  
+*/  
 
 };

@@ -1,12 +1,12 @@
 import { db } from "../models/db.js";
-import { TagsSpec } from "../models/joi-schemas.js";
+import { TagSpec } from "../models/joi-schemas.js";
 
 export const pinController = {
     index: {
       handler: async function (request, h) {
         const pinId = request.params.id;
         const loggedInUser = request.auth.credentials;
-        console.log("Getting pins");
+        console.log("Getting pin");
         const pin = await db.pinStore.getPinById(pinId);
         const viewData = {
           title: "Pin tags",
@@ -19,6 +19,13 @@ export const pinController = {
     },
 
     updatePin: {
+        validate: {
+            payload: TagSpec,
+            options: { abortEarly: false },
+            failAction: function (request, h, error) {
+              return h.view("pin-view", { title: "Pins error", errors: error.details }).takeover().code(400);
+            },
+          },
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
             const pinId = request.params.id;
