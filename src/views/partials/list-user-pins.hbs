@@ -1,0 +1,32 @@
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th>User id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each pins}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{userid}}
+        </td>
+        <td>
+          <a href="/pin/{{_id}}" class="button">
+            <i class="fas fa-folder"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/dashboard/deletepin/{{_id}}" class="button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
