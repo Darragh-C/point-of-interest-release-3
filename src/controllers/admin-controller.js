@@ -6,10 +6,13 @@ export const adminController = {
         handler: async function (request, h) {
           const loggedInUser = request.auth.credentials;
           const users = await db.userStore.getAllUsers();
+          const pins = await db.pinStore.getAllPins();
+
           const viewData = {
             title: "Admin",
             user: loggedInUser,
             users: users,
+            pins: pins,
           };
           console.log("Rendering admin view");
           return h.view("admin-view", viewData);
@@ -32,5 +35,41 @@ export const adminController = {
             console.log("Rendering admin view");
             return h.redirect("/admin");
         }
-    }
+    },
+
+    sortPins: {
+      handler: async function (request, h) {
+        const routePath = request.path;
+        const pathItems = routePath.split("/");
+        const key = pathItems.pop();
+        const sortedPins = await db.pinStore.getAllPinsSort(key);
+
+        const users = await db.userStore.getAllUsers();
+        const viewData = {
+          title: "Admin",
+          users: users,
+          pins: sortedPins,
+        };
+        console.log("Rendering admin view");
+        return h.view("admin-view", viewData);
+      },
+    },
+
+    sortUsers: {
+      handler: async function (request, h) {
+        const routePath = request.path;
+        const pathItems = routePath.split("/");
+        const key = pathItems.pop();
+        const sortedUsers = await db.userStore.getAllUsersSort(key);
+
+        const pins = await db.pinStore.getAllPins();
+        const viewData = {
+          title: "Admin",
+          users: sortedUsers,
+          pins: pins,
+        };
+        console.log("Rendering admin view");
+        return h.view("admin-view", viewData);
+      },
+    },
 };

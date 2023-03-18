@@ -6,6 +6,11 @@ export const userMongoStore = {
     return users;
   },
 
+  async getAllUsersSort(key) {
+    const pins = await User.find().sort( { [key] : 1 } ).lean();
+    return pins;
+  },
+
   async getUserById(id) {
     if (id) {
       const user = await User.findOne({ _id: id }).lean();

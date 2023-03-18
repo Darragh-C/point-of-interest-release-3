@@ -2,48 +2,54 @@
   <thead>
     <tr>
       <th>
-        First name
+        Place
         <div style="float: right;">
-          <a href="/admin/sortusers/firstName" class="button is-small">
+          <a href="/admin/sortpins/name" class="button is-small">
             <i class="fas fa-filter fa-xs"></i>
           </a>
         </div>
       </th>
       <th>
-        Last name
+        Category
         <div style="float: right;">
-          <a href="/admin/sortusers/lastName" class="button is-small">
+          <a href="/admin/sortpins/category" class="button is-small">
             <i class="fas fa-filter fa-xs"></i>
           </a>
         </div>
-      </th>
+      </th>  
       <th>
-        Email
+        User id
         <div style="float: right;">
-          <a href="/admin/sortusers/email" class="button is-small">
+          <a href="/admin/sortpins/userid" class="button is-small">
             <i class="fas fa-filter fa-xs"></i>
           </a>
         </div>
       </th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    {{#each this.users}}
+    {{#each this.pins}}
       <tr>
         <td>
-          {{firstName}}
+          {{name}}
         </td>
         <td>
-          {{lastName}}
+          {{category}}
         </td>
         <td>
-          {{email}}
+          {{userid}}
         </td>
         <td>
-            <a href="/admin/removeuser/{{_id}}" class="button is-danger">
-                Remove
-            </a>
+          <a href="/pin/{{_id}}" class="button">
+            <i class="fas fa-folder"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/dashboard/deletepin/{{_id}}" class="button">
+            <i class="fas fa-trash"></i>
+          </a>
         </td>
       </tr>
     {{/each}}
