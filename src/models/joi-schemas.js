@@ -19,7 +19,8 @@ export const UserSpec = UserCredentialsSpec.keys({
 
 export const UserSpecPlus = UserSpec.keys({
   _id: IdSpec,
-  __v: Joi.number()
+  __v: Joi.number(),
+  createdAt: Joi.date().optional().example("Date.now object").default(Date.now),
 })
 .label("UserDetails");
 
@@ -30,7 +31,7 @@ export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 // pin specs
 export const PinSpec = Joi.object()
   .keys({
-    name: IdSpec,
+    name: Joi.string().allow("").example("Kinsale").optional(),
     userid: IdSpec,
     description: Joi.string().allow("").example("A seaside town west of Cork").optional(),
     lattitude: Joi.string().allow("").example("51.71").optional(),
@@ -38,14 +39,13 @@ export const PinSpec = Joi.object()
     county: Joi.string().allow("").example("Cork").optional(),
     category: Joi.string().allow("").example("Public parking").optional(),
     img: Joi.string().allow("").example("http://path/your-image.png").optional(),
-    _id: IdSpec,
-    __v: Joi.number(),
   })
   .label("PinDetails");
 
   export const PinSpecPlus = PinSpec.keys({
     _id: IdSpec,
     __v: Joi.number(),
+    createdAt: Joi.date().optional().example("Date.now object").default(Date.now),
   }).label("PinPlus");
 
   export const TagSpec = Joi.object()

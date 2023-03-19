@@ -1,11 +1,40 @@
 import { Pin } from "./pin.js";
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 export const pinMongoStore = {
-    async getAllPins() {
-      const pins = await Pin.find().lean();
-      return pins;
-    },
+  async getAllUsers() {
+    const users = await User.find().lean();
+    return users;
+  },
+
+  async getAllPins() {
+    const response = await Pin.find().lean();
+    const pins = response.map((value) => {
+      const returnObj = {
+        _id : value._id,
+        userid : value.userid,
+        name : value.name,
+      };
+      if (value.county) {
+        returnObj.county = value.county;
+      }
+      if (value.category) {
+        returnObj.category = value.category;
+      }
+      if (value.lattitude) {
+        returnObj.lattitude = value.lattitude;
+      }
+      if (value.longitude) {
+        returnObj.longitude = value.longitude;
+      }
+      if (value.createdAt) {
+        returnObj.createdAt = moment(value.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+      }
+      return returnObj;
+    });
+    return pins;
+  },
 
     async getAllPinsSort(key) {
       const pins = await Pin.find().sort( { [key] : 1 } ).lean();
@@ -64,7 +93,7 @@ export const pinMongoStore = {
               name: "$name", 
               category: "$category", 
               description: "$description", 
-              lattitude: "lattitude", 
+              lattitude: "$lattitude", 
               longitute: "$longitude", 
               __v: "$__v" } 
             } 
@@ -89,7 +118,7 @@ export const pinMongoStore = {
               name: "$name", 
               category: "$category", 
               description: "$description", 
-              lattitude: "lattitude", 
+              lattitude: "$lattitude", 
               longitute: "$longitude", 
               __v: "$__v" } 
             } 
@@ -115,7 +144,7 @@ export const pinMongoStore = {
               category: "$category", 
               description: "$description", 
               county: "$county", 
-              lattitude: "lattitude", 
+              lattitude: "$lattitude", 
               longitute: "$longitude", 
               __v: "$__v" } 
             } 

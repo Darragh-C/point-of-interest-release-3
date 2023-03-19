@@ -1,13 +1,15 @@
-{{#each pins}}
-  <div class="box box-link-hover-shadow">
-    <h2 class="title">
-      {{name}}
-    </h2>
-    <a href="/dashboard/deletepin/{{_id}}" class="button">
-      <i class="fas fa-trash"></i>
-    </a>
-    <a href="/pin/{{_id}}" class="button">
-      <i class="fas fa-folder"></i>
-    </a>
-  </div>
-{{/each}}
+<div>
+  {{#each pins}}
+    <div class="box box-link-hover-shadow">
+      <h2 class="title">
+        {{name}}
+      </h2>
+      <a href="/dashboard/deletepin/{{_id}}" class="button">
+        <i class="fas fa-trash"></i>
+      </a>
+      <a href="/pin/{{_id}}" class="button">
+        <i class="fas fa-folder"></i>
+      </a>
+    </div>
+  {{/each}}
+</div>
