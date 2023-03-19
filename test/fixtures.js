@@ -44,7 +44,6 @@ export const testPin = {
     description: "Cork seaside town",
     lattitude: "44.45",
     longitude: "55.45",
-    userid: "12345"
 };
 
 export const multiTestPins = [
@@ -54,7 +53,6 @@ export const multiTestPins = [
         description: "Cork seaside town",
         lattitude: "44.45",
         longitude: "55.45",
-        userid: "12345"
     },
     {
         name: "Cobh",
@@ -62,7 +60,6 @@ export const multiTestPins = [
         description: "Cork seaside town",
         lattitude: "44.45",
         longitude: "55.45",
-        userid: "12345"
     },
     {
         name: "Castletownbere",
@@ -70,7 +67,6 @@ export const multiTestPins = [
         description: "Cork seaside town",
         lattitude: "44.45",
         longitude: "55.45",
-        userid: "67890"
     },
 ];
 

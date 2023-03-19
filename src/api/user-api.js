@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { UserSpec, UserArray, IdSpec } from "../models/joi-schemas.js";
+import { UserSpec, UserArray, IdSpec, UserSpecPlus } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
@@ -37,7 +37,7 @@ export const userApi = {
     tags: ["api"],
     description: "Get user",
     notes: "Gets one user with the userApi when you pass its id",
-    response: { schema: UserSpec, failAction: validationError },
+    response: { schema: UserSpecPlus, failAction: validationError },
     validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
@@ -58,7 +58,7 @@ export const userApi = {
     description: "Create user",
     notes: "Creates a user with the userApi",
     validate: { payload: UserSpec, failAction: validationError },
-    response: { schema: UserSpec, failAction: validationError },
+    response: { schema: UserSpecPlus, failAction: validationError },
   },
 
   deleteAll: {
