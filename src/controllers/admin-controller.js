@@ -10,6 +10,7 @@ export const adminController = {
           const pinTotal = await db.pinStore.getPinsTotal();
           const userTotal = await db.userStore.getUsersTotal();
           const pinTotalCounty = await db.pinStore.pinsCategoryCount("county");
+          const pinTotalCategory = await db.pinStore.pinsCategoryCount("category");
 
           const viewData = {
             title: "Admin",
@@ -19,6 +20,7 @@ export const adminController = {
             pinTotal: pinTotal,
             userTotal: userTotal,
             pinTotalCounty: pinTotalCounty,
+            pinTotalCategory: pinTotalCategory,
           };
           console.log("Rendering admin view");
           return h.view("admin-view", viewData);
