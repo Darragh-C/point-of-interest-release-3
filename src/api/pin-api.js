@@ -6,6 +6,12 @@ import { validationError } from "./logger.js";
 export const pinApi = {
     create: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function(request, h) {
         try {
           const pin = await db.pinStore.addPin(request.payload);
@@ -26,6 +32,12 @@ export const pinApi = {
   
     find: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function(request, h) {
         try {
           const pins = await db.pinStore.getAllPins();
@@ -42,6 +54,12 @@ export const pinApi = {
 
     findOne: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function (request, h) {
         try {
           const pin = await db.pinStore.getPinById(request.params.id);
@@ -62,6 +80,12 @@ export const pinApi = {
     
     deleteAll: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function (request, h) {
           try {
           await db.pinStore.deleteAll();
