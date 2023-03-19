@@ -13,6 +13,10 @@ const pinSchema = new Schema({
   longitude: String,
   category: String,
   img: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export const Pin = Mongoose.model("Pin", pinSchema);

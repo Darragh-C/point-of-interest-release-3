@@ -1,9 +1,33 @@
 import { Pin } from "./pin.js";
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 export const pinMongoStore = {
     async getAllPins() {
-      const pins = await Pin.find().lean();
+      const response = await Pin.find().lean();
+      const pins = response.map((value) => {
+        const returnObj = {
+          _id : value._id,
+          userid : value.userid,
+          name : value.name,
+        };
+        if (value.county) {
+          returnObj.county = value.county;
+        }
+        if (value.category) {
+          returnObj.category = value.category;
+        }
+        if (value.lattitude) {
+          returnObj.lattitude = value.lattitude;
+        }
+        if (value.longitude) {
+          returnObj.longitude = value.longitude;
+        }
+        if (value.createdAt) {
+          returnObj.createdAt = moment(value.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+        }
+        return returnObj;
+      });
       return pins;
     },
 
