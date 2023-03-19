@@ -127,9 +127,15 @@ export const pinMongoStore = {
     },
   
     async addPin(pin) {
+      //console.log("creating pin schema");
       const newPin = new Pin(pin);
+      //console.log(newPin);
+      //console.log("creating pin object");
       const pinObj = await newPin.save();
+      //console.log(pinObj);
+      //console.log("gettign pin by id");
       const p = await this.getPinById(pinObj._id);
+      //console.log(p);
       return p;
     },
    
@@ -215,5 +221,10 @@ export const pinMongoStore = {
         });
       }  
     },  
-  
+
+    async updateImage(updatedPin) {
+      const pin = await Pin.findOne({ _id: updatedPin._id });
+      pin.img = updatedPin.img;
+      await pin.save();
+    },
   };  

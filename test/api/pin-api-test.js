@@ -2,15 +2,26 @@ import { assert } from "chai";
 import { poiService } from "./poi-service.js";
 import { assertSubset } from "../test-utils.js";
 import { testPin, multiTestPins } from "../fixtures.js";
+import { johnDoe } from "../fixtures.js"
 
 suite("Pin API tests", () => {
     setup(async () => {
-        await poiService.deleteAllPins();
-        for (let i = 0; i < multiTestPins.length; i += 1) {
-          // eslint-disable-next-line no-await-in-loop
-          multiTestPins[i] = await poiService.createPin(multiTestPins[i]);
-        }
-      });
+      /* FIXME:
+      poiService.clearAuth();
+      user = await poiService.createUser(johnDoe);
+      await poiService.authenticate(johnDoe);
+      await poiService.deleteAllPins();
+      await poiService.deleteAllUsers();
+      user = await poiService.createUser(johnDoe);
+      await poiService.authenticate(johnDoe);
+      jd.userid = user._id;
+      */
+      await poiService.deleteAllPins();
+      for (let i = 0; i < multiTestPins.length; i += 1) {
+        // eslint-disable-next-line no-await-in-loop
+        multiTestPins[i] = await poiService.createPin(multiTestPins[i]);
+      }
+    });
     teardown(async () => {
     });
   

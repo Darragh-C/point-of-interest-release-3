@@ -7,7 +7,7 @@ suite("User Model tests", () => {
 
   setup(async () => {
     db.init("mongo");
-    await db.userStore.deleteAll();
+    //await db.userStore.deleteAll();
     //await db.userStore.addUser(johnDoe);
     //await db.userStore.addUser(janeDoe);
     for (let i = 0; i < multiTestUsers.length; i += 1) {
