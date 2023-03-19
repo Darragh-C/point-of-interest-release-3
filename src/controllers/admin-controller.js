@@ -7,12 +7,20 @@ export const adminController = {
           const loggedInUser = request.auth.credentials;
           const users = await db.userStore.getAllUsers();
           const pins = await db.pinStore.getAllPins();
+          const pinTotal = await db.pinStore.getPinsTotal();
+          const userTotal = await db.userStore.getUsersTotal();
+          const pinTotalCounty = await db.pinStore.pinsCategoryCount("county");
+          const pinTotalCategory = await db.pinStore.pinsCategoryCount("category");
 
           const viewData = {
             title: "Admin",
             user: loggedInUser,
             users: users,
             pins: pins,
+            pinTotal: pinTotal,
+            userTotal: userTotal,
+            pinTotalCounty: pinTotalCounty,
+            pinTotalCategory: pinTotalCategory,
           };
           console.log("Rendering admin view");
           return h.view("admin-view", viewData);
