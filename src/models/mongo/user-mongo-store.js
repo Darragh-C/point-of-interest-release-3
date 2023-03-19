@@ -11,6 +11,11 @@ export const userMongoStore = {
     return pins;
   },
 
+  async getUsersTotal() {
+    const pins = await User.find().count().lean();
+    return pins;
+  },
+
   async getUserById(id) {
     if (id) {
       const user = await User.findOne({ _id: id }).lean();

@@ -11,6 +11,11 @@ export const pinMongoStore = {
       const pins = await Pin.find().sort( { [key] : 1 } ).lean();
       return pins;
     },
+
+    async getPinsTotal() {
+      const pins = await Pin.find().count().lean();
+      return pins;
+    },
   
     async getPinById(id) {
       if (id) {
@@ -117,6 +122,28 @@ export const pinMongoStore = {
           } 
         },
         { $sort: { _id: 1 } },
+      ]);
+      return pins;
+    },
+
+    async pinsCategoryCount(category) {
+      const group = "$" + category;
+      let pins = Pin.aggregate([
+        { $group: { 
+          _id: group, pins: { 
+            $push: { 
+              _id: "$_id", 
+              userid: "$userid", 
+              name: "$name", 
+              category: "$category", 
+              description: "$description", 
+              lattitude: "lattitude", 
+              longitute: "$longitude", 
+              __v: "$__v" } 
+            } 
+          } 
+        },
+        { $project: { _id: 1, count: { $size: "$pins" } } }
       ]);
       return pins;
     },
