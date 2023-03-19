@@ -1,35 +1,14 @@
 {{> menu active="pin"}}
 
-<section class="section columns is-vcentered">
-  <div class="column">
-    <div class="box box-link-hover-shadow">
-        <div class="columns is-multiline is-mobile">
-        <div class="column is-one-quarter">
-            <h2 class="title">
-            {{pin.name}}
-            </h2>
-        </div>
-        <div class="column is-one-quarter">
-            {{pin.category}}
-        </div>
-        <div class="column is-one-quarter">
-            Longitude: {{pin.longitude}}
-        </div>
-        <div class="column is-one-quarter">
-            Latitude: {{pin.lattitude}}
+<section class="section columns">
+    <div class="columns">
+        <div class="column">
+            {{> pin-tags pin}}
+            {{> add-tags pin}}
+            {{> add-category pin}}
         </div>
         <div class="column">
-            {{pin.county}}
-        </div>
-        <div class="column">
-            {{pin.description}}
-        </div>
+            {{> add-image }}
         </div>
     </div>
-    {{> add-tags pin}}
-    {{> add-category pin}}
-  </div>  
-  <div class="column">
-    {{> add-image }}
-  </div>
 </section>

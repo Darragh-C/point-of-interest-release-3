@@ -1,6 +1,6 @@
-<section class="section">
+
   <form class="box" action="/pin/{{this._id}}/addcategory" method="POST">
-    <h1 class="title">Add a category</h1>
+    <h1 class="subtitle">Add a category</h1>
  <!--
     <div class="field">
       <label class="label">Category</label> <input class="input" type="text" placeholder="Enter pin category" name="category">
@@ -11,26 +11,24 @@
     </div>
      -->  
     <div class="field is-horizontal">
-
+      <div class="field-body">
         <div class="field">
-            <label class="label">Category:</label>
-            <div class="control">
-                <div class="select">
-                    <select name="category">
-                        <option value="Aires">Aires</option>
-                        <option value="Public parking">Public parking</option>
-                        <option value="Business parking">Business parking</option>
-                    </select>
-                </div>
+          <label class="label">Category:</label>
+        </div>
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <select name="category">
+                <option value="Aires">Aires</option>
+                  <option value="Public parking">Public parking</option>
+                  <option value="Business parking">Business parking</option>
+              </select>
             </div>
           </div>
         </div>  
-
-        <div>
+        <div class="field">
           <button class="button is-link">Add Category</button>
         </div>
-      
+      </div>
     </div>
-
   </form>
-</section>
