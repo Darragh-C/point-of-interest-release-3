@@ -215,5 +215,10 @@ export const pinMongoStore = {
         });
       }  
     },  
-  
+
+    async updateImage(updatedPin) {
+      const pin = await Pin.findOne({ _id: updatedPin._id });
+      pin.img = updatedPin.img;
+      await pin.save();
+    },
   };  
