@@ -34,6 +34,15 @@ export const webRoutes = [
 
   { method: "GET", path: "/admin", config: adminController.index },
   { method: "GET", path: "/admin/removeuser/{id}", config: adminController.deleteUser },
+  { method: "GET", path: "/admin/sortpins/name", config: adminController.sortPins },
+  { method: "GET", path: "/admin/sortpins/category", config: adminController.sortPins },
+  { method: "GET", path: "/admin/sortpins/userid", config: adminController.sortPins },
+  { method: "GET", path: "/admin/sortusers/firstName", config: adminController.sortUsers },
+  { method: "GET", path: "/admin/sortusers/lastName", config: adminController.sortUsers },
+  { method: "GET", path: "/admin/sortusers/email", config: adminController.sortUsers },
+  
+  { method: "POST", path: "/pin/{id}/uploadimage", config: pinController.updateImage },
+
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

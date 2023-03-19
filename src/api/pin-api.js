@@ -1,9 +1,17 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { PinSpec, PinArray, IdSpec, PinSpecPlus } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const pinApi = {
     create: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function(request, h) {
         try {
           const pin = await db.pinStore.addPin(request.payload);
@@ -18,10 +26,18 @@ export const pinApi = {
       tags: ["api"],
       description: "Create pin",
       notes: "Creates a pin with the pinApi",
+      validate: { payload: PinSpec, failAction: validationError },
+      response: { schema: PinSpecPlus, failAction: validationError },
     },
   
     find: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function(request, h) {
         try {
           const pins = await db.pinStore.getAllPins();
@@ -33,10 +49,17 @@ export const pinApi = {
       tags: ["api"],
       description: "Get pins",
       notes: "Gets alls pins with the pinApi",
+      response: { schema: PinArray, failAction: validationError }
     },
 
     findOne: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function (request, h) {
         try {
           const pin = await db.pinStore.getPinById(request.params.id);
@@ -51,10 +74,18 @@ export const pinApi = {
       tags: ["api"],
       description: "Get user",
       notes: "Gets a pin with the pinApi when you pass its id",
+      response: { schema: PinSpecPlus, failAction: validationError },
+      validate: { params: { id: IdSpec }, failAction: validationError },
     },
     
     deleteAll: {
       auth: false,
+      /*
+      FIXME:
+      auth: {
+        strategy: "jwt",
+      },
+      */
       handler: async function (request, h) {
           try {
           await db.pinStore.deleteAll();

@@ -10,5 +10,7 @@ export const apiRoutes = [
     { method: "GET", path: "/api/pins", config: pinApi.find },
     { method: "POST", path: "/api/pins", config: pinApi.create },
     { method: "DELETE", path: "/api/pins", config: pinApi.deleteAll },
-    { method: "GET", path: "/api/pins/{id}", config: pinApi.findOne },    
+    { method: "GET", path: "/api/pins/{id}", config: pinApi.findOne },   
+    
+    { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
   ];

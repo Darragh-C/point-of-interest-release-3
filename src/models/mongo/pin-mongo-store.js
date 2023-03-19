@@ -1,9 +1,48 @@
 import { Pin } from "./pin.js";
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 export const pinMongoStore = {
-    async getAllPins() {
-      const pins = await Pin.find().lean();
+  async getAllUsers() {
+    const users = await User.find().lean();
+    return users;
+  },
+
+  async getAllPins() {
+    const response = await Pin.find().lean();
+    const pins = response.map((value) => {
+      const returnObj = {
+        _id : value._id,
+        userid : value.userid,
+        name : value.name,
+      };
+      if (value.county) {
+        returnObj.county = value.county;
+      }
+      if (value.category) {
+        returnObj.category = value.category;
+      }
+      if (value.lattitude) {
+        returnObj.lattitude = value.lattitude;
+      }
+      if (value.longitude) {
+        returnObj.longitude = value.longitude;
+      }
+      if (value.createdAt) {
+        returnObj.createdAt = moment(value.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+      }
+      return returnObj;
+    });
+    return pins;
+  },
+
+    async getAllPinsSort(key) {
+      const pins = await Pin.find().sort( { [key] : 1 } ).lean();
+      return pins;
+    },
+
+    async getPinsTotal() {
+      const pins = await Pin.find().count().lean();
       return pins;
     },
   
@@ -40,8 +79,12 @@ export const pinMongoStore = {
       return pins;
     },
 
-    async groupPinsByCategory() {
+    async groupPinsByCategory(userId) {
       let pins = Pin.aggregate([
+        { $match: {
+            userid: userId
+          }   
+        },
         { $group: { 
           _id: "$category", pins: { 
             $push: { 
@@ -50,7 +93,7 @@ export const pinMongoStore = {
               name: "$name", 
               category: "$category", 
               description: "$description", 
-              lattitude: "lattitude", 
+              lattitude: "$lattitude", 
               longitute: "$longitude", 
               __v: "$__v" } 
             } 
@@ -75,7 +118,7 @@ export const pinMongoStore = {
               name: "$name", 
               category: "$category", 
               description: "$description", 
-              lattitude: "lattitude", 
+              lattitude: "$lattitude", 
               longitute: "$longitude", 
               __v: "$__v" } 
             } 
@@ -101,7 +144,7 @@ export const pinMongoStore = {
               category: "$category", 
               description: "$description", 
               county: "$county", 
-              lattitude: "lattitude", 
+              lattitude: "$lattitude", 
               longitute: "$longitude", 
               __v: "$__v" } 
             } 
@@ -112,15 +155,43 @@ export const pinMongoStore = {
       return pins;
     },
 
+    async pinsCategoryCount(category) {
+      const group = "$" + category;
+      let pins = Pin.aggregate([
+        { $group: { 
+          _id: group, pins: { 
+            $push: { 
+              _id: "$_id", 
+              userid: "$userid", 
+              name: "$name", 
+              category: "$category", 
+              description: "$description", 
+              lattitude: "lattitude", 
+              longitute: "$longitude", 
+              __v: "$__v" } 
+            } 
+          } 
+        },
+        { $project: { _id: 1, count: { $size: "$pins" } } }
+      ]);
+      return pins;
+    },
+
     async getUserPins(userId) {
       const pins = Pin.find({ userid: userId }).lean();
       return pins;
     },
   
     async addPin(pin) {
+      //console.log("creating pin schema");
       const newPin = new Pin(pin);
+      //console.log(newPin);
+      //console.log("creating pin object");
       const pinObj = await newPin.save();
+      //console.log(pinObj);
+      //console.log("gettign pin by id");
       const p = await this.getPinById(pinObj._id);
+      //console.log(p);
       return p;
     },
    
@@ -206,5 +277,10 @@ export const pinMongoStore = {
         });
       }  
     },  
-  
+
+    async updateImage(updatedPin) {
+      const pin = await Pin.findOne({ _id: updatedPin._id });
+      pin.img = updatedPin.img;
+      await pin.save();
+    },
   };  
