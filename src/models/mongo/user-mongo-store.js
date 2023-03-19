@@ -2,6 +2,13 @@ import { User } from "./user.js";
 import moment from 'moment';
 
 export const userMongoStore = {
+  /*
+  async getAllUsers() {
+    const users = await User.find().lean();
+    return users;
+  },
+  */
+
   async getAllUsers() {
     const response = await User.find().lean();
     const users = response.map((value) => {

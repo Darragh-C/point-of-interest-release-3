@@ -18,7 +18,7 @@ export const categoriesController = {
 
   filter: {
     handler: async function (request, h) {
-      const id = request.auth.credentials._id.toString();
+      const id = request.auth.credentials._id;
       let categories = {};
       if (request.payload.filter && request.payload.filter === "Placename") {
         console.log("Grouping pins by placename");
