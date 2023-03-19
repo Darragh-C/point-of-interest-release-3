@@ -19,7 +19,8 @@ export const UserSpec = UserCredentialsSpec.keys({
 
 export const UserSpecPlus = UserSpec.keys({
   _id: IdSpec,
-  __v: Joi.number()
+  __v: Joi.number(),
+  createdAt: Joi.date().optional().example("Date.now object").default(Date.now),
 })
 .label("UserDetails");
 

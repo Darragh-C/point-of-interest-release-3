@@ -1,8 +1,22 @@
 import { User } from "./user.js";
+import moment from 'moment';
 
 export const userMongoStore = {
   async getAllUsers() {
-    const users = await User.find().lean();
+    const response = await User.find().lean();
+    const users = response.map((value) => {
+      const returnObj = {
+        _id : value._id,
+        firstName : value.firstName,
+        lastName : value.lastName,
+        email : value.email,
+        password : value.password,
+      };
+      if (value.createdAt) {
+        returnObj.createdAt = moment(value.createdAt).format('MMMM Do YYYY, h:mm:ss a');
+      }
+      return returnObj;
+    });
     return users;
   },
 

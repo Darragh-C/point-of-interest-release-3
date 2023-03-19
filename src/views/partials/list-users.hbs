@@ -26,6 +26,14 @@
           </a>
         </div>
       </th>
+      <th>
+        Created date
+        <div style="float: right;">
+          <a href="/admin/sortusers/createddate" class="button is-small">
+            <i class="fas fa-filter fa-xs"></i>
+          </a>
+        </div>
+      </th>
       <th></th>
     </tr>
   </thead>
@@ -40,6 +48,9 @@
         </td>
         <td>
           {{email}}
+        </td>
+        <td>
+          {{createdAt}}
         </td>
         <td>
             <a href="/admin/removeuser/{{_id}}" class="button is-danger">
