@@ -41,7 +41,7 @@ export const webRoutes = [
   { method: "GET", path: "/admin/sortusers/lastName", config: adminController.sortUsers },
   { method: "GET", path: "/admin/sortusers/email", config: adminController.sortUsers },
   
-  { method: "POST", path: "/pin/{id}/uploadimage", config: pinController.uploadImage },
+  { method: "POST", path: "/pin/{id}/uploadimage", config: pinController.updateImage },
 
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },

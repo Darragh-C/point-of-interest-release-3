@@ -70,11 +70,11 @@ export const pinController = {
     }
   },
 
-  uploadImage: {
+  updateImage: {
     handler: async function (request, h) {
+      const pin = await db.pinStore.getPinById(request.params.id);
+      const file = request.payload.imagefile;
       try {
-        const pin = await db.pinStore.getPinById(request.params.id);
-        const file = request.payload.imagefile;
         if (Object.keys(file).length > 0) {
           const url = await imageStore.uploadImage(request.payload.imagefile);
           pin.img = url;
