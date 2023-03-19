@@ -10,26 +10,36 @@ export const UserCredentialsSpec = Joi.object()
   })
   .label("UserCredentials");
 
-export const UserSpec = Joi.object()
-  .keys({
+export const UserSpec = UserCredentialsSpec.keys({
     firstName: Joi.string().example("John").required(),
     lastName: Joi.string().example("Doe").required(),
-    email: Joi.string().email().example("john.doe@mail.com").required(),
-    password: Joi.string().example("secret").required(),
     isAdmin: Joi.boolean().allow("").example("True").optional(),
-    _id: IdSpec,
-    __v: Joi.number()
   })
   .label("UserDetails");
 
-export const UserArray = Joi.array().items(UserSpec).label("UserArray");
+export const UserSpecPlus = UserSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number()
+})
+.label("UserDetails");
+
+export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 
 
 // pin specs
 export const PinSpec = Joi.object()
   .keys({
-    name: Joi.string().example("Kinsale").optional(),
+    name: IdSpec,
+    userid: IdSpec,
+    description: Joi.string().allow("").example("A seaside town west of Cork").optional(),
+    lattitude: Joi.string().allow("").example("51.71").optional(),
+    longitude: Joi.string().allow("").example("8.5").optional(),
+    county: Joi.string().allow("").example("Cork").optional(),
+    category: Joi.string().allow("").example("Public parking").optional(),
+    img: Joi.string().allow("").example("http://path/your-image.png").optional(),
+    _id: IdSpec,
+    __v: Joi.number(),
   })
   .label("PinDetails");
 
@@ -41,11 +51,14 @@ export const PinSpec = Joi.object()
   export const TagSpec = Joi.object()
   .keys({
     name: Joi.string().allow("").example("Kinsale").optional(),
+    userid: IdSpec,
     description: Joi.string().allow("").example("A seaside town west of Cork").optional(),
     lattitude: Joi.string().allow("").example("51.71").optional(),
     longitude: Joi.string().allow("").example("8.5").optional(),
     county: Joi.string().allow("").example("Cork").optional(),
     category: Joi.string().allow("").example("Public parking").optional(),
+    _id: IdSpec,
+    __v: Joi.number(),
   })
   .label("TagDetails");
 

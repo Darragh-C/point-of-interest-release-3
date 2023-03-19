@@ -7,10 +7,11 @@ suite("Pin Model tests", () => {
     
    setup(async () => {
         db.init("mongo");
-        await db.pinStore.deleteAll();
+        //await db.pinStore.deleteAll();
         for (let i = 0; i < multiTestPins.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
             multiTestPins[i] = await db.pinStore.addPin(multiTestPins[i]);
+            done();
         }
     });
 
