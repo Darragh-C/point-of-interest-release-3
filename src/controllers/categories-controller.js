@@ -4,9 +4,10 @@ import { PinSpec } from "../models/joi-schemas.js";
 export const categoriesController = {
   index: {
     handler: async function (request, h) {
-      const id = request.auth.credentials._id.toString();
+      const id = request.auth.credentials._id;
       console.log("Grouping pins by category");
-      const categories = await db.pinStore.groupPinsByCategory(id);
+      let categories = {};
+      categories = await db.pinStore.groupPinsByCategory(id);
       
       const viewData = {
         title: "Categories",
@@ -28,7 +29,7 @@ export const categoriesController = {
         categories = await db.pinStore.groupPinsByCounty(id);
       } else {
         console.log("Grouping pins by category");
-        categories = await db.pinStore.groupPinsByCategory();
+        categories = await db.pinStore.groupPinsByCategory(id);
       }
       
       const viewData = {
